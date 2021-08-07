@@ -1,8 +1,9 @@
 .keypadBody {
-  background-color: black;
+  background-color: #181817;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .numberButtonCircle {
@@ -11,23 +12,28 @@
   background-color: dimgray;
   padding: 25px;
   margin: 10px;
-  font-size: 1.5em;
+  font-size: 1.4em;
   color: white;
 }
+.orangeBtn {
+    border-radius: 50%;
+    border: 0;
+    padding: 25px;
+    margin: 10px;
+    font-size: 1.4em;
+    color: white;
+  }
 
-.highlighted {
+.highlighted,
+.orangeBtn {
   background-color: darkgoldenrod;
 }
 
 .numberButtonCircle:hover {
-  border-radius: 50%;
-  border: 0;
   background-color: grey;
-  padding: 25px;
-  margin: 10px;
-  font-size: 1.5em;
 }
 
-.highlighted:hover {
-  background-color: rgb(167, 137, 61);
+.highlighted:hover,
+.orangeBtn:hover {
+  background-color: rgb(194, 150, 40);
 }

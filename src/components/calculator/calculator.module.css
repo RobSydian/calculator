@@ -1,8 +1,9 @@
 .calculator {
-    width: 400px;
+    width: 370px;
     height: 100%;
     margin: auto;
-    background-color: aqua;
+    background-color: #181817;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
 }

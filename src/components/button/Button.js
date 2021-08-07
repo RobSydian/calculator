@@ -1,13 +1,13 @@
 import React from 'react';
 import { numberButtonCircle, highlighted } from '../keypad/keypad.module.css';
 
-const Button = ({ value, children, isHighlighted, buttonClickHandler }) => {
+const Button = ({ children, isHighlighted, buttonClickHandler, orangeBtn }) => {
   let classes = isHighlighted
     ? `${numberButtonCircle} ${highlighted}`
-    : `${numberButtonCircle}`;
+    : `${numberButtonCircle}`;  
 
   return (
-    <button className={classes} onClick={() => buttonClickHandler()}>
+    <button className={orangeBtn ? `${orangeBtn}` : classes} onClick={() => buttonClickHandler()}>
       {children}
     </button>
   );

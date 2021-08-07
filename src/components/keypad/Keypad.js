@@ -38,35 +38,34 @@ const Keypad = ({
         <Button
           id="clearBtn"
           value="AC"
+          isHighlighted
           buttonClickHandler={() => buttonOnClick('AC')}
         >
           AC
         </Button>
       </div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          flexWrap: 'nowrap',
-        }}
-      >
-        {sideOperations.map((operation) => (
+      <div style={{ display: 'flex' }}>
+        <div className={keypadStyles.keypadBody}>
+          {sideOperations.map((operation) => (
+            <Button
+              value={operation}
+              buttonClickHandler={() => operatorOnClick(operation)}
+              key={operation}
+              isHighlighted={operationClicked}
+              orangeBtn={keypadStyles.orangeBtn}
+            >
+              {operation}
+            </Button>
+          ))}
           <Button
-            value={operation}
-            buttonClickHandler={() => operatorOnClick(operation)}
-            key={operation}
+            value="="
+            buttonClickHandler={onCalculate}
             isHighlighted={operationClicked}
+            orangeBtn={keypadStyles.orangeBtn}
           >
-            {operation}
+            =
           </Button>
-        ))}
-        <Button
-          value="="
-          buttonClickHandler={onCalculate}
-          isHighlighted={operationClicked}
-        >
-          =
-        </Button>
+        </div>
       </div>
     </div>
   );
