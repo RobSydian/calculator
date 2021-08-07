@@ -3,9 +3,14 @@ import Button from '../button/Button';
 import keypadStyles from '../keypad/keypad.module.css';
 
 const numbers = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0'];
-const sideOperations = ['÷', 'x', '-', '+', '='];
+const sideOperations = ['÷', 'x', '-', '+'];
 
-const Keypad = ({ buttonOnClick, operationOnClick, operationClicked }) => (
+const Keypad = ({
+  buttonOnClick,
+  operationOnClick,
+  operationClicked,
+  onCalculate,
+}) => (
   <div id="keypad" style={{ display: 'flex' }}>
     <div className={keypadStyles.keypadBody}>
       {numbers.map((number) => (
@@ -37,6 +42,13 @@ const Keypad = ({ buttonOnClick, operationOnClick, operationClicked }) => (
           {operation}
         </Button>
       ))}
+      <Button
+        value="="
+        buttonClickHandler={onCalculate}
+        isHighlighted={operationClicked}
+      >
+        =
+      </Button>
     </div>
   </div>
 );

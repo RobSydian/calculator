@@ -43,6 +43,26 @@ const Calculator = () => {
     setFirstValue(display);
   };
 
+  const calculate = () => {
+    let result;
+    if (operation === '+') {
+      result = +firstValue + +display;
+    }
+    if (operation === '-') {
+      result = +firstValue - +display;
+    }
+    if (operation === 'x') {
+      result = +firstValue * +display;
+    }
+    if (operation === '÷') {
+      result = +firstValue / +display;
+    }
+    setDisplay(`${result}`);
+    setOperation('');
+    setFirstValue('');
+    setOnSecondValue(false);
+  };
+
   return (
     <div className={styles.calculator}>
       <Display value={display}></Display>
@@ -50,6 +70,7 @@ const Calculator = () => {
         buttonOnClick={updateDisplay}
         operationOnClick={updateOperation}
         operationClicked={operation === '' ? false : true}
+        onCalculate={calculate}
       ></Keypad>
     </div>
   );
@@ -64,4 +85,6 @@ export default Calculator;
  * if it's the first operation pressed, store next value
  * function for the equal button
  * take display and the operation and calculate
+ * handle display numbers that come out of the display screen
+ * handle decimals and NaN
  */
