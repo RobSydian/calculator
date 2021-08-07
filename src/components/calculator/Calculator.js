@@ -44,7 +44,7 @@ const Calculator = () => {
     setFirstValue(display);
   };
 
-  const calculate = () => {
+  const calculate = (reset = true, newOperator = '') => {
     if (operation === '') {
       return;
     }
@@ -62,10 +62,11 @@ const Calculator = () => {
     if (operation === '÷') {
       result = +firstValue / +display;
     }
+
     setDisplay(`${result}`);
-    setOperation('');
-    setFirstValue('');
+    setOperation(newOperator);
     setOnSecondValue(false);
+    setFirstValue(reset ? '' : `${result}`);
   };
 
   return (

@@ -11,59 +11,65 @@ const Keypad = ({
   operationClicked,
   onCalculate,
   onSecondValue,
-}) => (
-  <div id="keypad" style={{ display: 'flex' }}>
-    <div className={keypadStyles.keypadBody}>
-      {numbers.map((number) => (
+}) => {
+  const operatorOnClick = (operation) => {
+    onSecondValue ? onCalculate(false, operation) : operationOnClick(operation);
+  };
+
+  return (
+    <div id="keypad" style={{ display: 'flex' }}>
+      <div className={keypadStyles.keypadBody}>
+        {numbers.map((number) => (
+          <Button
+            value={number}
+            buttonClickHandler={() => buttonOnClick(number)}
+            key={number}
+          >
+            {number}
+          </Button>
+        ))}
         <Button
-          value={number}
-          buttonClickHandler={() => buttonOnClick(number)}
-          key={number}
+          id="decimal"
+          value="."
+          buttonClickHandler={() => buttonOnClick('.')}
         >
-          {number}
+          .
         </Button>
-      ))}
-      <Button
-        id="decimal"
-        value="."
-        buttonClickHandler={() => buttonOnClick('.')}
-      >
-        .
-      </Button>
-      <Button
-        id="clearBtn"
-        value="AC"
-        buttonClickHandler={() => buttonOnClick('AC')}
-      >
-        AC
-      </Button>
-    </div>
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        flexWrap: 'nowrap',
-      }}
-    >
-      {sideOperations.map((operation) => (
         <Button
-          value={operation}
-          buttonClickHandler={() => operationOnClick(operation)}
-          key={operation}
+          id="clearBtn"
+          value="AC"
+          buttonClickHandler={() => buttonOnClick('AC')}
+        >
+          AC
+        </Button>
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          flexWrap: 'nowrap',
+        }}
+      >
+        {sideOperations.map((operation) => (
+          <Button
+            value={operation}
+            buttonClickHandler={() => operatorOnClick(operation)}
+            key={operation}
+            isHighlighted={operationClicked}
+          >
+            {operation}
+          </Button>
+        ))}
+        <Button
+          value="="
+          buttonClickHandler={onCalculate}
           isHighlighted={operationClicked}
         >
-          {operation}
+          =
         </Button>
-      ))}
-      <Button
-        value="="
-        buttonClickHandler={onCalculate}
-        isHighlighted={operationClicked}
-      >
-        =
-      </Button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Keypad;
