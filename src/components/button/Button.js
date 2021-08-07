@@ -7,7 +7,7 @@ const Button = ({ value, children, isHighlighted, buttonClickHandler }) => {
     : `${numberButtonCircle}`;
 
   return (
-    <button className={classes} onClick={() => buttonClickHandler(value)}>
+    <button className={classes} onClick={() => buttonClickHandler()}>
       {children}
     </button>
   );

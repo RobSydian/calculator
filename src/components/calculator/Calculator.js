@@ -15,22 +15,24 @@ const Calculator = () => {
       setOperation('');
       setFirstValue('');
       setOnSecondValue(false);
+
+      return;
+    }
+
+    if (!display && value === '.') {
+      setDisplay('0.');
+
       return;
     }
 
     if (operation && !onSecondValue) {
-      console.log(value);
-      setDisplay(value);
+      value === '.' ? setDisplay('0.') : setDisplay(value);
       setOnSecondValue(true);
+
       return;
     }
 
-    if (!display && value === ',') {
-      setDisplay('0,');
-      return;
-    }
-
-    if (value === ',' && display.includes(',')) {
+    if (value === '.' && display.includes('.')) {
       return;
     }
 
@@ -38,12 +40,15 @@ const Calculator = () => {
   };
 
   const updateOperation = (value) => {
-    console.log(value);
     setOperation(value);
     setFirstValue(display);
   };
 
   const calculate = () => {
+    if (operation === '') {
+      return;
+    }
+
     let result;
     if (operation === '+') {
       result = +firstValue + +display;
@@ -71,6 +76,7 @@ const Calculator = () => {
         operationOnClick={updateOperation}
         operationClicked={operation === '' ? false : true}
         onCalculate={calculate}
+        onSecondValue={onSecondValue}
       ></Keypad>
     </div>
   );

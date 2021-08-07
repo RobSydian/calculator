@@ -10,18 +10,31 @@ const Keypad = ({
   operationOnClick,
   operationClicked,
   onCalculate,
+  onSecondValue,
 }) => (
   <div id="keypad" style={{ display: 'flex' }}>
     <div className={keypadStyles.keypadBody}>
       {numbers.map((number) => (
-        <Button value={number} buttonClickHandler={buttonOnClick} key={number}>
+        <Button
+          value={number}
+          buttonClickHandler={() => buttonOnClick(number)}
+          key={number}
+        >
           {number}
         </Button>
       ))}
-      <Button id="comma" value="," buttonClickHandler={buttonOnClick}>
-        ,
+      <Button
+        id="decimal"
+        value="."
+        buttonClickHandler={() => buttonOnClick('.')}
+      >
+        .
       </Button>
-      <Button id="clearBtn" value="AC" buttonClickHandler={buttonOnClick}>
+      <Button
+        id="clearBtn"
+        value="AC"
+        buttonClickHandler={() => buttonOnClick('AC')}
+      >
         AC
       </Button>
     </div>
@@ -35,7 +48,7 @@ const Keypad = ({
       {sideOperations.map((operation) => (
         <Button
           value={operation}
-          buttonClickHandler={operationOnClick}
+          buttonClickHandler={() => operationOnClick(operation)}
           key={operation}
           isHighlighted={operationClicked}
         >
